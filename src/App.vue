@@ -143,8 +143,8 @@ export default {
 body {
   margin: 0;
   padding: 0;
-  /* font-family: "Recursive", Helvetica, Arial, sans-serif; */
-  font-family: 'MedievalSharp', cursive;
+  font-family: "Recursive", Helvetica, Arial, sans-serif;
+  /* font-family: 'MedievalSharp', cursive; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 19px;
@@ -194,6 +194,11 @@ svg.main,
 
 .character-choices {
   margin: 5px 0;
+
+  input {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 .friendtalk {
