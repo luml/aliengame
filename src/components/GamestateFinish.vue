@@ -21,7 +21,9 @@
       />
     </svg>
     <button @click="restart">restart the game</button>
-    <slot></slot>
+    <slot>
+      <p>{{ bestHooman ? 'Best Hooman' : 'keep on' }}</p>
+    </slot>
   </div>
 </template>
 
@@ -32,6 +34,7 @@ export default {
   computed: {
     ...mapState([
       'uiState',
+      'bestHooman',
     ])
   },
   methods: {

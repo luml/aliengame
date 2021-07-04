@@ -127,6 +127,7 @@ export default {
     },
     pickQuestion(character) {
       this.$store.commit('pickQuestion', character)
+      this.$store.commit('isBestHooman')
     },
     shuffle(array) {
       for (let i = array.length - 1; i > 0; i--) {
