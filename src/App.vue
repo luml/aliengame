@@ -1,15 +1,10 @@
+
 <template>
   <div id="app" class="contain">
-
     <GamestateStart v-if="uiState === 'start'">
       <h2>Which hooman do you want to be?</h2>
       <p v-for="option in characterChoices" :key="option" class="character-choices">
-        <input
-          v-model="characterinput"
-          :id="option"
-          :value="option"
-          type="radio"
-        />
+        <input v-model="characterinput" :id="option" :value="option" type="radio" />
         <label :for="option">{{option}}</label>
       </p>
 
@@ -30,7 +25,7 @@
         <Friend />
         <Score />
 
-        <component :is="character"></component>
+        <component :is="character" />
 
         <text
           x="1000"
@@ -72,9 +67,7 @@
       </div>
       <div class="zombietalk">
         <p v-for="character in shuffle(characterChoices)" :key="character">
-          <button @click="pickQuestion(character)">
-            {{ questions[questionIndex][character] }}
-          </button>
+          <button @click="pickQuestion(character)">{{ questions[questionIndex][character] }}</button>
         </p>
       </div>
     </section>
@@ -83,18 +76,21 @@
   </div>
 </template>
 
-<script>
-import Artist from '@/components/Artist.vue';
-import Baker from '@/components/Baker.vue';
-import Friend from '@/components/Friend.vue';
-import Mechanic from '@/components/Mechanic.vue';
-import Score from '@/components/Score.vue';
-import Zombie from '@/components/Zombie.vue';
-import { mapState } from 'vuex';
-import GamestateStart from '@/components/GamestateStart.vue'
-import GamestateFinish from '@/components/GamestateFinish.vue';
+<script lang="ts">
+import Vue from "vue";
+// import HelloWorld from './components/HelloWorld.vue';
+import Artist from "@/components/Artist.vue";
+import Baker from "@/components/Baker.vue";
+import Friend from "@/components/Friend.vue";
+import Mechanic from "@/components/Mechanic.vue";
+import Score from "@/components/Score.vue";
+import Zombie from "@/components/Zombie.vue";
+import { mapState } from "vuex";
+import GamestateStart from "@/components/GamestateStart.vue";
+import GamestateFinish from "@/components/GamestateFinish.vue";
 
-export default {
+export default Vue.extend({
+  name: "App",
   components: {
     GamestateStart,
     GamestateFinish,
@@ -103,44 +99,44 @@ export default {
     Friend,
     Mechanic,
     Score,
-    Zombie,
+    Zombie
   },
   data() {
     return {
-      characterinput: '',
-    }
+      characterinput: ""
+    };
   },
   computed: {
     ...mapState([
-        "uiState",
-        "questions",
-        "characterChoices",
-        "character",
-        "questionIndex"
-      ])
+      "uiState",
+      "questions",
+      "characterChoices",
+      "character",
+      "questionIndex"
+    ])
   },
   methods: {
     pickCharacter() {
-      console.log(this.characterinput)
-      this.$store.commit('pickCharacter', this.characterinput)
-      this.$store.commit('updateUIState', "characterChosen")
+      console.log(this.characterinput);
+      this.$store.commit("pickCharacter", this.characterinput);
+      this.$store.commit("updateUIState", "characterChosen");
     },
-    pickQuestion(character) {
-      this.$store.commit('pickQuestion', character)
-      this.$store.commit('isBestHooman')
+    pickQuestion(character: string) {
+      this.$store.commit("pickQuestion", character);
+      this.$store.commit("isBestHooman");
     },
-    shuffle(array) {
+    shuffle(array: []) {
       for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1))
-        ;[array[i], array[j]] = [array[j], array[i]]
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
       }
-      return array
+      return array;
     }
   }
-};
+});
 </script>
 
-<style>
+<style lang="scss">
 body {
   margin: 0;
   padding: 0;

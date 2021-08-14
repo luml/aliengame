@@ -64,11 +64,12 @@
   </g>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from "vue";
 import gsap from 'gsap';
 import { mapState } from 'vuex';
 
-export default {
+export default Vue.extend({
   computed: {
     ...mapState([
       'score',
@@ -83,7 +84,7 @@ export default {
       })
     }
   }
-};
+});
 </script>
 
 <style lang="scss" scoped></style>

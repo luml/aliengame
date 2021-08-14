@@ -27,10 +27,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from "vue";
 import { mapState } from 'vuex';
 
-export default {
+export default Vue.extend({
   computed: {
     ...mapState([
       'uiState',
@@ -42,7 +43,7 @@ export default {
       this.$store.commit('restartGame')
     }
   }
-};
+});
 </script>
 
 <style lang="scss" scoped>
